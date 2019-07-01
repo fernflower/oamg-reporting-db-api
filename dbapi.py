@@ -2,7 +2,7 @@ import importlib
 
 import config
 
-module, name = config.ADAPTER.rsplit('.', 1)
+module, name = config.DB_ADAPTER.rsplit('.', 1)
 mod = importlib.import_module(module, name)
 
 def get_impl():

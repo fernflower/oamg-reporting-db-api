@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request, make_response
 
+import config
 import dbapi
 
 
 app = Flask(__name__)
 db = dbapi.get_impl()
+
 
 @app.route("/report", methods=["POST"])
 def upload_report():
@@ -24,4 +26,4 @@ def show_report(report_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host=config.WEBSERVER_HOST, port=config.WEBSERVER_PORT, debug=True)
