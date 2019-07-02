@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, url_for
 
 import config
 import dbapi
@@ -14,7 +14,7 @@ def upload_report():
         return make_response("JSON data expected", 401, {})
     data = request.get_json()
     report_id = db.create_report(data)
-    res = {"status": "ok", "id": report_id}
+    res = {"status": "ok", "id": report_id, "url": url_for("show_report", report_id=report_id)}
     return jsonify(res)
 
 
